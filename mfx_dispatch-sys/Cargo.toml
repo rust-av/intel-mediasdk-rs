@@ -1,0 +1,20 @@
+[package]
+name = "mfx_dispatch-sys"
+version = "0.1.0"
+authors = ["Luca Barbato <lu_zero@gentoo.org>"]
+license = "MIT"
+description = "FFI bindings to Intel Media SDK"
+repository = "https://github.com/rust-av/mfx_dispatch-rs"
+
+build = "build.rs"
+
+[build-dependencies.libbindgen]
+git = "https://github.com/servo/rust-bindgen"
+
+[build-dependencies]
+metadeps = "1.1"
+
+[package.metadata.pkg-config]
+libmfx = "1.19"
+
+[dependencies]
