@@ -7,14 +7,15 @@ It is a simple [binding][1] and safe abstraction over the [Intel Media SDK][2].
 ## Building
 
 The bindings are generated using the headers and libraries that ought to be present in the system.
-The original library [repackaging][3] supports pkg-config thus alternate paths can be expressed
-using the standard pkg-config variables.
+On Linux the [main repository](https://github.com/Intel-Media-SDK/MediaSDK) provides full instructions,
+on Windows you may use the [repackaged dispatcher](https://github.com/lu-zero/mfx_dispatch).
 
 ## TODO
-- [ ] Simple bindings
+- [x] Simple bindings
 - [ ] Safe abstraction
 - [ ] Examples
 
-[1]: https://github.com/servo/rust-bindgen
-[2]: https://software.intel.com/en-us/media-sdk
+[1]: https://github.com/rust-lang-nursery/rust-bindgen
+[2]: http://mediasdk.intel.com
 [3]: https://github.com/lu-zero/mfx_dispatch
+[4]: https://github.com/Intel-Media-SDK/MediaSDK

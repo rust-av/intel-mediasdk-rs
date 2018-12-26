@@ -1,16 +1,16 @@
 [package]
-name = "mfx_dispatch"
+name = "intel-mediasdk"
 version = "0.1.0"
 authors = ["Luca Barbato <lu_zero@gentoo.org>"]
 license = "MIT"
 description = "Intel MediaSDK bindings"
-repository = "https://github.com/rust-av/mfx_dispatch-rs"
+repository = "https://github.com/rust-av/intel-mediasdk-rs"
 readme = "README.md"
 keywords = ["qsv", "intel", "mediasdk"]
 
 [dependencies]
-mfx_dispatch-sys = { version = "0.1.0", path = "mfx_dispatch-sys" }
+intel-mediasdk-sys = { version = "0.1.0", path = "intel-mediasdk-sys" }
 
 [workspace]
-members = ["mfx_dispatch-sys"]
+members = ["intel-mediasdk-sys"]
 
