@@ -1,6 +1,7 @@
 # Intel Media SDK bindings
 
 [![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Actions Status](https://github.com/rust-av/intel-mediasdk-rs/workflows/intel-mediasdk/badge.svg)](https://github.com/rust-av/intel-mediasdk-rs/actions)
 
 It is a simple [binding][1] and safe abstraction over the [Intel Media SDK][2].
 
