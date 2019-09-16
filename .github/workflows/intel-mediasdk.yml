@@ -1,0 +1,50 @@
+name: intel-mediasdk
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install Python3 packages
+      env:
+        PYTHON3_PKG: python3-setuptools python3-wheel
+      run: |
+        sudo apt-get install $PYTHON3_PKG
+    - name: Install meson and ninja
+      run: |
+        sudo pip3 install meson ninja
+    - name: Install libva
+      env:
+        LIBVA_DIR: libva_dir
+      run: |
+        git clone --depth 1 https://github.com/intel/libva.git
+        cd libva
+        meson build -Dprefix=$HOME/$LIBVA_DIR --buildtype release
+        ninja -C build
+        ninja -C build install
+    - name: Install intel-mediasdk
+      env:
+        INTEL_DIR: intel_dir
+        LIBVA_DIR: libva_dir
+        PKG_PATH: lib/x86_64-linux-gnu/pkgconfig
+      run: |
+        export PKG_CONFIG_PATH=$HOME/$LIBVA_DIR/$PKG_PATH:$PKG_CONFIG_PATH
+        git clone --depth 1 https://github.com/Intel-Media-SDK/MediaSDK msdk
+        cd msdk
+        mkdir -p build
+        cd build
+        cmake -DCMAKE_INSTALL_PREFIX=$HOME/$INTEL_DIR \
+              -DBUILD_SAMPLES=0 \
+              ..
+        make -j12
+        make install
+    - name: Run tests
+      env:
+        INTEL_DIR: intel_dir
+      run: |
+        export PKG_CONFIG_PATH=$HOME/$INTEL_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
+        cargo test --all-features --verbose
