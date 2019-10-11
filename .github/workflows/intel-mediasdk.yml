@@ -5,10 +5,16 @@ on: [push, pull_request]
 jobs:
   build:
 
+    env:
+      INTEL_DIR: intel_dir
+
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v1
+    - name: Install libdrm
+      run: |
+        sudo apt-get install libdrm-dev
     - name: Install Python3 packages
       env:
         PYTHON3_PKG: python3-setuptools python3-wheel
@@ -28,7 +34,6 @@ jobs:
         ninja -C build install
     - name: Install intel-mediasdk
       env:
-        INTEL_DIR: intel_dir
         LIBVA_DIR: libva_dir
         PKG_PATH: lib/x86_64-linux-gnu/pkgconfig
       run: |
@@ -43,8 +48,6 @@ jobs:
         make -j12
         make install
     - name: Run tests
-      env:
-        INTEL_DIR: intel_dir
       run: |
         export PKG_CONFIG_PATH=$HOME/$INTEL_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
         cargo test --all-features --verbose
