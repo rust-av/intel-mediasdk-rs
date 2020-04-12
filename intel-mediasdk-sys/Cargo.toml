@@ -4,7 +4,7 @@ version = "0.1.0"
 authors = ["Luca Barbato <lu_zero@gentoo.org>"]
 license = "MIT"
 description = "FFI bindings to Intel Media SDK"
-repository = "https://github.com/rust-av/intel-mediaskd-rs"
+repository = "https://github.com/rust-av/intel-mediasdk-rs"
 
 build = "build.rs"
 
