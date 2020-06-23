@@ -1,10 +1,10 @@
 extern crate bindgen;
 extern crate metadeps;
 
-use std::path::PathBuf;
-use std::io::Write;
 use std::env;
 use std::fs::File;
+use std::io::Write;
+use std::path::PathBuf;
 
 fn format_write(builder: bindgen::Builder) -> String {
     builder
